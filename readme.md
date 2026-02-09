@@ -49,6 +49,12 @@ ModelTraining/
 #### 克隆和安装
 
 - 按照lerobot官方链接进行安装：https://huggingface.co/docs/lerobot/installation
+- 然后在同一根目录下克隆本仓库：
+
+```bash
+git clone https://github.com/33Maximilian/ModelTraining.git
+```
+
 - 注意：Pi0.5等政策需求ffmpeg 7.1.1版，所以安装ffmpeg时需要执行：
 
 ```bash

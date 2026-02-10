@@ -2,8 +2,8 @@
 
 ## 总览
 
-- **主要模块**: ACT、Pi0.5
-- **支持策略**: ACT (Action Chunking Transformer)、Pi0.5
+- **主要模块**: ACT、Pi0.5、GR00T N1.6
+- **支持策略**: ACT (Action Chunking Transformer)、Pi0.5、GR00T N1.6 Policy
 - **项目路径**: `ModelTraining`
 
 ### Tips：单卡VS多卡
@@ -37,6 +37,9 @@ ModelTraining/
 │       ├── train_pi05_sim.sh
 │       ├── train_pi05_real.sh
 │       └── eval_pi05.sh
+├── GR00T_N16/                 # GR00T N1.6 策略训练模块
+│   ├── readme.md
+│   └── pyproject.toml
 └── readme.md
 ```
 
@@ -77,7 +80,10 @@ hf auth login
 
 - **PushT 任务**: 见 [ACT/scripts/PushT/readme.md](ACT/scripts/PushT/readme.md)
 - **ALOHA 任务**: 见 [ACT/scripts/ALOHA/readme.md](ACT/scripts/ALOHA/readme.md)
-- **Pi0 任务**: 见 [Pi0/readme.md](Pi0/readme.md)
+- **Pi0 任务**: 见 [Pi05/readme.md](Pi05/readme.md)
+- **GR00T N1.6 任务**: 见 [GR00T_N16/readme.md](GR00T_N16/readme.md)
+
+---
 
 ### 3. 实时监控训练
 

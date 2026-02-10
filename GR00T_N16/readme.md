@@ -4,34 +4,13 @@
 
 - **策略**: GR00T N1.6 Policy
 - **模型**: GR00T N1.6
-- **项目路径**: `ModelTraining/GR00T_N16`
-
----
-
-## 目录结构
-
-```
-GR00T_N1.6/
-├── readme.md
-├── modality.json
-├── LeftSideGrasp_config.py
-└── scripts/
-    ├── train_GR00T_sim.sh
-    └── train_GR00T_real.sh
-```
+- **项目路径**: `ModelTraining/Isaac-GR00T`
 
 ---
 
 ## QuickStart
 
-### 1. 训练脚本说明
-
-- **train_GR00T_sim.sh**: GR00T N1.6 仿真训练脚本
-- **train_GR00T_real.sh**: GR00T N1.6 实机数据集训练脚本
-
----
-
-### 2. 环境配置
+### 1. 环境配置
 
 1） 按照 [GR00T 安装指南](https://github.com/NVIDIA/Isaac-GR00T/tree/main) 完成仓库克隆，安装uv并激活环境：
 
@@ -105,7 +84,7 @@ huggingface-cli download nvidia/GR00T-N1.6-3B --local-dir ${YOUR_OUTPUT_PATH}
 
 ---
 
-### 3. 运行训练
+### 2. 运行训练
 
 接下来按照官方文档一步一步复现即可，请根据自己设备的实际情况调整官方脚本中对应参数。
 
@@ -115,7 +94,7 @@ huggingface-cli download nvidia/GR00T-N1.6-3B --local-dir ${YOUR_OUTPUT_PATH}
 
 ---
 
-### 4. 主要训练参数说明
+### 3. 主要训练参数说明
 
 参考 [Fine-tune LIBERO](https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/LIBERO/README.md#finetune-libero-spatial-dataset)。
 
@@ -157,35 +136,24 @@ huggingface-cli download nvidia/GR00T-N1.6-3B --local-dir ${YOUR_OUTPUT_PATH}
 - `--learning_rate 1e-4`  
   优化器的初始学习率。
 
-#### 6. 监控与批量设置
+#### （5）监控与批量设置
 
 - `--use_wandb`  
   启用 Weights & Biases 云端实验监控（需账户和API KEY）。
 - `--global_batch_size ${N}`  
   所有进程合成的总批次大小。
 
-#### 7. 数据与增强
+#### （6）数据与增强
 
 - `--color_jitter_params brightness 0.3 contrast 0.4 saturation 0.5 hue 0.08`  
   图像增强参数，随机亮度、对比度、饱和度、色调调整范围。
 - `--dataloader_num_workers 4`  
   数据加载进程数，提升数据预处理与加载速度。
 
-#### 8. 模型正则与Dropout
+#### （7）模型正则与Dropout
 
 - `--state_dropout_prob 0.8`  
   模型state部分的dropout概率，提升泛化能力，减少过拟合。
-
----
-
-### 5. 训练监控与模型上传
-
-- **WandB 监控**：
-  - 注册并登录 [WandB](https://wandb.ai)
-  - 训练脚本自动上传日志
-
-- **模型上传**：
-  - 若需上传模型到 HuggingFace Hub，设置 `--policy.push_to_hub=true` 并配置 `--policy.repo_id`
 
 ---
 

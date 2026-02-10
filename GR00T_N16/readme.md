@@ -1,4 +1,4 @@
-# Pi05 Policy 训练
+# GR00T N1.6 Policy 训练
 
 ## 项目信息
 

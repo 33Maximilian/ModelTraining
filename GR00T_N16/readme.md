@@ -88,9 +88,29 @@ huggingface-cli download nvidia/GR00T-N1.6-3B --local-dir ${YOUR_OUTPUT_PATH}
 
 接下来按照官方文档一步一步复现即可，请根据自己设备的实际情况调整官方脚本中对应参数。
 
-1）仿真微调实例：[Fine-tune LIBERO](https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/LIBERO/README.md#finetune-libero-spatial-dataset)
+1）仿真微调实例：[Fine-tune LIBERO](https://github.com/NVIDIA/Isaac-GR00T/blob/main/examples/LIBERO/README.md)
 
 2）实机数据集微调：[Fine-tune on Custom Embodiments](https://github.com/NVIDIA/Isaac-GR00T/blob/main/getting_started/finetune_new_embodiment.md)
+
+---
+
+#### Tip3：针对仿真评估环境映射问题
+
+在根据官方的Fine-tune LIBERO代码进行仿真评估时可能会遇到以下问题：客户端的--env_name报错libero_sim的"NamespaceNotFound"，可以通过修改**Isaac-GR00T/gr00t/eval/sim/env_utils.py**的**get_embodiment_tag_from_env_name函数**，添加映射关系，让 libero_sim 被自动映射到 EmbodimentTag.LIBERO_PANDA来解决，代码如下：
+
+```bash
+def get_embodiment_tag_from_env_name(env_name: str) -> EmbodimentTag:
+    # ...原有映射...
+    # 将libero_sim 指定映射到 EmbodimentTag.LIBERO_PANDA
+    if env_name.startswith("libero_sim"):
+        return EmbodimentTag.LIBERO_PANDA
+    # ...其它映射...
+
+    return EmbodimentTag(env_name.split("/")[0])
+```
+
+之后进行仿真评估，结果如下：
+![仿真结果](./sim_result.png)
 
 ---
 
